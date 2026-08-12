@@ -305,7 +305,219 @@
     <h2>自动化前后对比</h2>
     <div class="lead">“每周节省约 3 个工作日”基于每周一、三、五的实际运营节奏估算，节省主要来自文案生产、排版上传和跨平台重复发布。</div>
     <div class="compare">
-      <div class="co…3328 tokens truncated…e="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+      <div class="compare-col">
+        <h3>自动化前 · 多平台手工作业</h3>
+        <ul>
+          <li>逐张识别产品图并整理卖点</li>
+          <li>分别编写中英文内容与视频介绍</li>
+          <li>手动制作 Word、排版并上传独立站</li>
+          <li>逐一登录社媒后台、重复上传与发布</li>
+          <li>依靠人工记录完成状态追踪</li>
+        </ul>
+      </div>
+      <div class="compare-col after">
+        <h3>自动化后 · 素材入队 + 人工审核</h3>
+        <ul>
+          <li>AI 读图并结合企业知识库生成内容</li>
+          <li>一次产生中英文多版本成品</li>
+          <li>自动创建 WordPress 文章与特色图</li>
+          <li>统一队列按排期分发至多个海外渠道</li>
+          <li>日志、归档、重试与防重复自动执行</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK 1 -->
+<section class="alt" id="workflows">
+  <div class="wrap">
+    <div class="sec-tag blue">作品一 · 内容生产</div>
+    <h2>WordPress 多语言自动成文</h2>
+    <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
+    <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案编撰、Word 排版、独立站上传和内容归档整合为一次自动运行，日常操作缩减为放入产品图与审核成品。</div>
+
+    <div class="card">
+      <h3>从 0 到 1 的搭建过程</h3>
+      <div class="story">
+        <div class="blk">
+          <h4><span class="dot">1</span>起点：一批产品图，缺乏配套文案</h4>
+          <p>手头数十张制造业产品图，需发布至英文独立站及国内平台。逐张写中英文、排版上传，单张耗时大半天。为此我把流程重构为「投入一张图，自动产出三份成品」。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">2</span>让计算机"理解"图像内容</h4>
+          <p>首要环节是读图：自动化借助多模态能力识别产品图（三瓣旋盖、医疗吸液头或新能源车压铸型芯），并提炼结构亮点、加工难点、适用场景等成文素材，免去逐张人工描述。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">3</span>建立"公司知识库"统一表述口径</h4>
+          <p>仅读图不够，还需"企业视角"。我整理了一份知识库（company-knowledge.md），涵盖公司简介、英文术语、SEO 关键词与合规边界；每次成文前先检索该库，确保三版口径一致、术语统一。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">4</span>一次生成三版，各自分发</h4>
+          <ul>
+            <li><b>英文完整版</b>：专业长文，含小标题与要点，经 WordPress REST API 发布至企业独立站，并自动设为特色图片。</li>
+            <li><b>中文精简版</b>（≤400 字）：地道非机翻的中文内容，生成 Word 包（文字 + 独立图），供发布至国内「中企动力」后台。</li>
+            <li><b>英文精简版</b>（≤400 词）：英文存档 Word，按日期归类，留底备查。</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">5</span>关键工程细节：幂等，绝不重复处理</h4>
+          <p>定时任务每次仅处理"尚未处理"的那张图。三套日志相互印证，重复运行也不会二次发布或生成；处理完毕的图片自动由 inbox 移至 processed/。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">6</span>最终形态</h4>
+          <p>如今每周一三五无需人工干预：官网自动新增英文文章、国内平台获中文稿、存档新增英文底稿。日常只需向 inbox 投入新图。</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:34px">工作流程</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 760 340" role="img" aria-label="WordPress 多语言自动成文流程图">
+          <defs>
+            <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"></path>
+            </marker>
+          </defs>
+          <rect class="node" x="20" y="140" width="110" height="62" rx="10"></rect>
+          <text class="node-text" x="75" y="160">产品图 inbox</text>
+          <text class="node-sub" x="75" y="180">原始素材</text>
+
+          <rect class="node brand" x="160" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="220" y="160">定时触发</text>
+          <text class="node-sub" x="220" y="180">周一三五 09:00</text>
+
+          <rect class="node" x="320" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="380" y="160">多模态读图</text>
+          <text class="node-sub" x="380" y="180">+ 知识库</text>
+
+          <rect class="node brand" x="480" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="540" y="160">三版成文</text>
+          <text class="node-sub" x="540" y="180">1 图 → 3 文</text>
+
+          <rect class="node teal" x="630" y="30" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="50">英文完整版</text>
+          <text class="node-sub" x="695" y="70">WP 发布</text>
+
+          <rect class="node teal" x="630" y="140" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="160">中文精简版</text>
+          <text class="node-sub" x="695" y="180">Word 包</text>
+
+          <rect class="node teal" x="630" y="250" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="270">英文精简版</text>
+          <text class="node-sub" x="695" y="290">存档</text>
+
+          <line x1="130" y1="171" x2="155" y2="171" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+          <line x1="280" y1="171" x2="315" y2="171" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+          <line x1="440" y1="171" x2="475" y2="171" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+          <line x1="600" y1="162" x2="625" y2="60" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+          <line x1="600" y1="171" x2="625" y2="171" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+          <line x1="600" y1="180" x2="625" y2="282" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"></line>
+
+          <text x="380" y="320" class="node-sub" text-anchor="middle">幂等日志：同一张图不会重复发文 / 重复生成</text>
+        </svg>
+      </div>
+
+      <div class="hl">
+        <div><b>多模态读图</b>直接看懂产品图，自动提炼卖点与结构</div>
+        <div><b>知识库驱动</b>统一公司口径、术语与 SEO 关键词</div>
+        <div><b>三端输出</b>英文站全文 / 中文精简包 / 英文存档一次生成</div>
+        <div><b>幂等不重复</b>三套日志确保同一张图不会被重复处理</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="n">✓</div><div class="l">英文站已发布</div></div>
+        <div class="stat"><div class="n">✓</div><div class="l">中文发布包</div></div>
+        <div class="stat"><div class="n">✓</div><div class="l">英文存档</div></div>
+        <div class="stat"><div class="n teal">✓</div><div class="l">三端自动产出</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORK 2 -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">作品二 · 社媒分发</div>
+    <h2>社交自动发布（Facebook / YouTube / LinkedIn）</h2>
+    <div class="lead">每周一三五 17:00，从队列取出待发内容，按星期自动分流，将图文与视频发布至社交与视频平台，失败自动归档。</div>
+    <div class="case-result"><b>效率变化：</b>取消逐个平台登录、重复编辑文案、上传素材和手动发布的流程；同一份队列内容可自动适配并分发至多个海外渠道。</div>
+
+    <div class="card">
+      <h3>从 0 到 1 的搭建过程</h3>
+      <div class="story">
+        <div class="blk teal">
+          <h4><span class="dot">1</span>起点：内容已生成，却难以高效发布</h4>
+          <p>作品一产出的内容仍需人工逐篇粘贴至 Facebook、上传视频至 YouTube——重复、易遗漏、格式常错。我把"发布"也转为队列机制：待发内容投入文件夹，到点由计算机自动发送。</p>
+        </div>
+        <div class="blk teal">
+          <h4><span class="dot">2</span>以"队列"替代"逐次手动"</h4>
+          <p>我设计了 queue 文件夹：图文以 Word（含英文正文）存放，视频以 mp4 存放。自动化每次取最旧一条处理，完成移入 posted/，失败移入 failed/，避免遗漏且无需值守。</p>
+        </div>
+        <div class="blk teal">
+          <h4><span class="dot">3</span>按星期自动分流</h4>
+          <p>并非每日发布相同内容。排期设定：周一文档+视频、周三仅视频、周五仅文档。自动化读取当日星期自动分流，节奏无需人工干预。</p>
+        </div>
+        <div class="blk teal">
+          <h4><span class="dot">4</span>视频亦能自动撰写文案</h4>
+          <p>视频发布最繁琐的是写介绍。自动化抽取关键帧，经视觉理解判断画面为 CNC 加工或模具装配，自动生成 2–4 句英文帖与标签，由 FB / YouTube 直接带出。</p>
+        </div>
+        <div class="blk teal">
+          <h4><span class="dot">5</span>失败不丢失、可追溯</h4>
+          <p>发布失败（如令牌过期）不会静默丢失：内容转入 failed/ 留存并写入 run.log，何日、发布何内容、是否成功逐行可查；修复配置后重跑即可，内容不损。</p>
+        </div>
+        <div class="blk teal">
+          <h4><span class="dot">6</span>最终形态</h4>
+          <p>目前 Facebook 图文 / 视频、YouTube 视频均按排期自动运行，LinkedIn 通道也已打通。只需维护 queue 内容，社媒更新即自行运转。</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:34px">工作流程</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 760 360" role="img" aria-label="社交自动发布流程图">
+          <defs>
+            <marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"></path>
+            </marker>
+          </defs>
+          <rect class="node" x="20" y="150" width="110" height="62" rx="10"></rect>
+          <text class="node-text" x="75" y="170">队列 queue</text>
+          <text class="node-sub" x="75" y="190">Word / 视频</text>
+
+          <rect class="node brand" x="160" y="150" width="130" height="62" rx="10"></rect>
+          <text class="node-text" x="225" y="170">定时触发</text>
+          <text class="node-sub" x="225" y="190">周一三五 17:00</text>
+
+          <rect class="node" x="320" y="150" width="140" height="62" rx="10"></rect>
+          <text class="node-text" x="390" y="170">按星期分流</text>
+          <text class="node-sub" x="390" y="190">一文档+视频/三视频/五文档</text>
+
+          <rect class="node brand" x="480" y="150" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="540" y="170">解析</text>
+          <text class="node-sub" x="540" y="190">正文 / 抽帧写文案</text>
+
+          <rect class="node teal" x="630" y="30" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="50">Facebook 图文</text>
+          <text class="node-sub" x="695" y="68">已跑通</text>
+
+          <rect class="node teal" x="630" y="110" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="130">Facebook 视频</text>
+          <text class="node-sub" x="695" y="148">已跑通</text>
+
+          <rect class="node teal" x="630" y="190" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="210">YouTube 视频</text>
+          <text class="node-sub" x="695" y="228">已跑通</text>
+
+          <rect class="node teal" x="630" y="270" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="290">LinkedIn</text>
+          <text class="node-sub" x="695" y="308">已跑通</text>
+
+          <line x1="130" y1="181" x2="155" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="290" y1="181" x2="315" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="460" y1="181" x2="475" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="172" x2="625" y2="58" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="181" x2="625" y2="138" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="190" x2="625" y2="218" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
           <line x1="600" y1="200" x2="625" y2="298" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
 
           <text x="380" y="340" class="node-sub" text-anchor="middle">成功 → posted/，失败 → failed/，运行全程有日志可查</text>
@@ -657,4 +869,3 @@
 
 </body>
 </html>
-
