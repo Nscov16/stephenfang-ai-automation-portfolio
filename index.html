@@ -132,6 +132,10 @@
   .decision .q{font-size:15.5px;font-weight:800;color:var(--ink);margin-bottom:7px}
   .decision .a{font-size:14px;color:var(--muted)}
   .decision .tradeoff{display:inline-block;margin-top:10px;background:var(--brand-soft);color:var(--brand);border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700}
+  .portfolio-deep{display:none}
+  .case-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+  .case-summary div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:14px;color:var(--muted)}
+  .case-summary b{display:block;color:var(--ink);margin-bottom:4px}
 
   /* ARCHITECTURE */
   .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
@@ -238,7 +242,7 @@
     .hl,.stats{grid-template-columns:1fr}
     .stats{grid-template-columns:1fr 1fr}
     .impact-grid{grid-template-columns:1fr}
-    .compare,.evidence-grid,.contrib,.site-case,.decisions{grid-template-columns:1fr}
+    .compare,.evidence-grid,.contrib,.site-case,.decisions,.case-summary{grid-template-columns:1fr}
     .downloads{grid-template-columns:1fr}
   }
   @media (max-width:760px){
@@ -271,7 +275,6 @@
     <a href="#website">独立站案例</a>
     <a href="#evidence">真实证据</a>
     <a href="#decisions">设计决策</a>
-    <a href="#demo">交互演示</a>
     <a href="#templates">下载模板</a>
     <a href="#about">我的贡献</a>
   </div>
@@ -350,7 +353,13 @@
     <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
     <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案编撰、Word 排版、独立站上传和内容归档整合为一次自动运行，日常操作缩减为放入产品图与审核成品。</div>
 
-    <div class="card">
+    <div class="case-summary">
+      <div><b>问题</b>产品图缺乏中英文文案，独立站排版与发布耗时。</div>
+      <div><b>方案</b>多模态读图 + 企业知识库，一次生成三种内容版本。</div>
+      <div><b>结果</b>自动创建 WordPress 内容、中文发布包与英文存档，并防止重复处理。</div>
+    </div>
+
+    <div class="card portfolio-deep">
       <h3>从 0 到 1 的搭建过程</h3>
       <div class="story">
         <div class="blk">
@@ -480,7 +489,13 @@
     <div class="lead">每周一三五 17:00，从队列取出待发内容，按星期自动分流，将图文与视频发布至社交与视频平台，失败自动归档。</div>
     <div class="case-result"><b>效率变化：</b>取消逐个平台登录、重复编辑文案、上传素材和手动发布的流程；同一份队列内容可自动适配并分发至多个海外渠道。</div>
 
-    <div class="card">
+    <div class="case-summary">
+      <div><b>问题</b>多个社媒需要重复编辑文案、上传素材和人工发布。</div>
+      <div><b>方案</b>统一内容队列，按星期与内容类型自动分流多个渠道。</div>
+      <div><b>结果</b>各渠道实际发布约 20–30 条，失败可重试，状态可追踪。</div>
+    </div>
+
+    <div class="card portfolio-deep">
       <h3>从 0 到 1 的搭建过程</h3>
       <div class="story">
         <div class="blk teal">
@@ -580,7 +595,7 @@
 </section>
 
 <!-- DEMO · 模拟操作 -->
-<section class="alt demo" id="demo">
+<section class="alt demo portfolio-deep" id="demo">
   <div class="wrap">
     <div class="sec-tag blue">第一部分 · 模拟操作</div>
     <h2>点一下，看它怎么跑</h2>
@@ -654,7 +669,7 @@
 </section>
 
 <!-- DEMO · 真实产出样例 -->
-<section class="demo">
+<section class="demo portfolio-deep">
   <div class="wrap">
     <div class="sec-tag">第二部分 · 真实产出样例</div>
     <h2>它到底生成了什么</h2>
@@ -796,7 +811,7 @@
         <div class="a">AI 负责读图、成文、排版和建稿；公开发布前仍可检查专业术语、品牌口径与事实准确性，避免效率提升以内容风险为代价。</div>
         <span class="tradeoff">效率 × 内容质量</span>
       </article>
-      <article class="decision">
+      <article class="decision portfolio-deep">
         <div class="q">为什么采用文件队列？</div>
         <div class="a">当前内容规模不需要额外数据库。素材放入约定目录即可触发处理，团队容易理解、迁移和排查，部署成本也更低。</div>
         <span class="tradeoff">够用 × 低维护</span>
@@ -806,12 +821,12 @@
         <div class="a">定时任务可能重跑，网络也可能中断。通过发布日志和媒体映射识别已处理素材，避免重复发文、重复上传图片和重复触达用户。</div>
         <span class="tradeoff">自动化 × 防误发</span>
       </article>
-      <article class="decision">
+      <article class="decision portfolio-deep">
         <div class="q">为什么失败内容单独归档？</div>
         <div class="a">令牌过期或接口异常时不丢弃素材。失败内容进入独立目录并写入日志，修复配置后可安全重跑，形成可追溯的恢复机制。</div>
         <span class="tradeoff">容错 × 可追溯</span>
       </article>
-      <article class="decision">
+      <article class="decision portfolio-deep">
         <div class="q">为什么按星期分流渠道？</div>
         <div class="a">文档与视频的生产节奏不同。周一组合发布、周三侧重视频、周五侧重图文，在维持更新频率的同时避免同一天集中消耗素材。</div>
         <span class="tradeoff">稳定频率 × 素材节奏</span>
@@ -826,7 +841,7 @@
 </section>
 
 <!-- TECH -->
-<section class="alt">
+<section class="alt portfolio-deep">
   <div class="wrap">
     <div class="sec-tag blue">技术底座</div>
     <h2>三层架构</h2>
