@@ -122,7 +122,18 @@
   .contrib-item{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}
   .contrib-item b{display:block;color:var(--brand);margin-bottom:5px}
   .site-case{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
-  .site-case img{display:block;width:100%;border-radius:11px;border:1px solid var(--line)}
+  .site-carousel{position:relative;min-width:0}
+  .site-carousel-viewport{overflow:hidden;border-radius:11px;border:1px solid var(--line);background:#eef3f8}
+  .site-carousel-track{display:flex;transition:transform .48s ease}
+  .site-slide{position:relative;flex:0 0 100%;margin:0;aspect-ratio:16/9;background:#eef3f8}
+  .site-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border:0;border-radius:0}
+  .site-slide figcaption{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:999px;background:rgba(7,24,43,.82);color:#fff;font-size:12px;backdrop-filter:blur(5px)}
+  .site-carousel-btn{position:absolute;top:50%;z-index:2;width:38px;height:38px;border:0;border-radius:50%;background:rgba(7,24,43,.78);color:#fff;font-size:22px;line-height:1;cursor:pointer;transform:translateY(-50%);box-shadow:0 5px 15px rgba(15,23,42,.2)}
+  .site-carousel-btn:hover{background:var(--brand)}
+  .site-carousel-btn.prev{left:10px}.site-carousel-btn.next{right:10px}
+  .site-carousel-dots{display:flex;justify-content:center;gap:7px;margin-top:12px}
+  .site-carousel-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#cbd5e1;cursor:pointer}
+  .site-carousel-dot.active{width:24px;border-radius:99px;background:var(--brand)}
   .site-case h3{margin:0 0 8px}
   .site-case p{font-size:14.5px;color:var(--muted);margin:0 0 12px}
   .site-case ul{font-size:14px;color:#33405a;padding-left:20px;margin:0}
@@ -465,7 +476,20 @@
     <h2>独立完成制造业 B2B 独立站</h2>
     <div class="lead">除内容自动化外，我也具备从 0 到 1 独立搭建和持续运营 WordPress 独立站的能力，将品牌展示、产品信息、询盘转化与内容运营整合到同一站点。</div>
     <div class="site-case">
-      <img src="assets/evidence/independent-website-redacted.png" alt="已脱敏的制造业 B2B 独立站首页" loading="lazy" />
+      <div class="site-carousel" aria-label="独立站页面展示轮播">
+        <div class="site-carousel-viewport">
+          <div class="site-carousel-track">
+            <figure class="site-slide"><img src="assets/evidence/independent-website-redacted.png" alt="制造业 B2B 独立站首页" loading="lazy"><figcaption>首页与品牌展示</figcaption></figure>
+            <figure class="site-slide"><img src="assets/evidence/independent-website-about.png" alt="独立站关于我们页面" loading="lazy"><figcaption>企业介绍与全球业务</figcaption></figure>
+            <figure class="site-slide"><img src="assets/evidence/independent-website-products.png" alt="独立站产品目录页面" loading="lazy"><figcaption>产品分类与内容架构</figcaption></figure>
+            <figure class="site-slide"><img src="assets/evidence/independent-website-product-detail.png" alt="独立站产品详情页面" loading="lazy"><figcaption>产品详情与询盘入口</figcaption></figure>
+            <figure class="site-slide"><img src="assets/evidence/independent-website-solutions.png" alt="独立站解决方案页面" loading="lazy"><figcaption>行业解决方案展示</figcaption></figure>
+          </div>
+        </div>
+        <button class="site-carousel-btn prev" type="button" aria-label="上一张">‹</button>
+        <button class="site-carousel-btn next" type="button" aria-label="下一张">›</button>
+        <div class="site-carousel-dots" aria-label="选择展示图片"></div>
+      </div>
       <div>
         <h3>我独立完成的工作</h3>
         <p>截图来自实际搭建的网站首页，品牌与公司信息已脱敏。</p>
@@ -907,6 +931,48 @@
     wordpressCase.parentNode.insertBefore(socialCase, wordpressCase);
     wordpressCase.parentNode.insertBefore(websiteCase, wordpressCase.nextSibling);
   }
+
+  // ---- independent website carousel ----
+  document.querySelectorAll('.site-carousel').forEach(carousel=>{
+    const track = carousel.querySelector('.site-carousel-track');
+    const slides = [...carousel.querySelectorAll('.site-slide')];
+    const dotsWrap = carousel.querySelector('.site-carousel-dots');
+    let current = 0;
+    let timer;
+    const dots = slides.map((_, index)=>{
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'site-carousel-dot';
+      dot.setAttribute('aria-label', '查看第 ' + (index + 1) + ' 张图片');
+      dot.addEventListener('click', ()=>show(index, true));
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+    function show(index, restart){
+      current = (index + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + current * 100 + '%)';
+      dots.forEach((dot, i)=>dot.classList.toggle('active', i === current));
+      if (restart) start();
+    }
+    function start(){
+      clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(()=>show(current + 1, false), 5000);
+      }
+    }
+    carousel.querySelector('.prev').addEventListener('click', ()=>show(current - 1, true));
+    carousel.querySelector('.next').addEventListener('click', ()=>show(current + 1, true));
+    carousel.addEventListener('mouseenter', ()=>clearInterval(timer));
+    carousel.addEventListener('mouseleave', start);
+    let touchX = 0;
+    carousel.addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; }, {passive:true});
+    carousel.addEventListener('touchend', e=>{
+      const delta = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(delta) > 40) show(current + (delta < 0 ? 1 : -1), true);
+    }, {passive:true});
+    show(0, false);
+    start();
+  });
 
   // ---- tabs ----
   document.querySelectorAll('.demo .tab').forEach(t=>{
