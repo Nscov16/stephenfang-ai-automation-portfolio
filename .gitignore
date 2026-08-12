@@ -1,0 +1,14 @@
+# Never publish real credentials or local runtime artifacts
+config.json
+client_secret.json
+youtube_token.json
+.env
+.env.*
+__pycache__/
+*.pyc
+logs/
+failed/
+failed_videos/
+posted/
+posted_videos/
+
