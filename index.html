@@ -121,6 +121,12 @@
   .contrib{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
   .contrib-item{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}
   .contrib-item b{display:block;color:var(--brand);margin-bottom:5px}
+  .site-case{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .site-case img{display:block;width:100%;border-radius:11px;border:1px solid var(--line)}
+  .site-case h3{margin:0 0 8px}
+  .site-case p{font-size:14.5px;color:var(--muted);margin:0 0 12px}
+  .site-case ul{font-size:14px;color:#33405a;padding-left:20px;margin:0}
+  .site-case li{margin:7px 0}
 
   /* ARCHITECTURE */
   .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
@@ -227,7 +233,7 @@
     .hl,.stats{grid-template-columns:1fr}
     .stats{grid-template-columns:1fr 1fr}
     .impact-grid{grid-template-columns:1fr}
-    .compare,.evidence-grid,.contrib{grid-template-columns:1fr}
+    .compare,.evidence-grid,.contrib,.site-case{grid-template-columns:1fr}
     .downloads{grid-template-columns:1fr}
   }
   @media (max-width:760px){
@@ -257,6 +263,7 @@
   <div class="wrap">
     <a href="#impact">成果对比</a>
     <a href="#workflows">工作流案例</a>
+    <a href="#website">独立站案例</a>
     <a href="#evidence">真实证据</a>
     <a href="#demo">交互演示</a>
     <a href="#templates">下载模板</a>
@@ -431,6 +438,30 @@
         <div class="stat"><div class="n teal">✓</div><div class="l">三端自动产出</div></div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- INDEPENDENT WEBSITE -->
+<section id="website">
+  <div class="wrap">
+    <div class="sec-tag">作品三 · 独立站搭建与运营</div>
+    <h2>独立完成制造业 B2B 独立站</h2>
+    <div class="lead">除内容自动化外，我也具备从 0 到 1 独立搭建和持续运营 WordPress 独立站的能力，将品牌展示、产品信息、询盘转化与内容运营整合到同一站点。</div>
+    <div class="site-case">
+      <img src="assets/evidence/independent-website-redacted.png" alt="已脱敏的制造业 B2B 独立站首页" loading="lazy" />
+      <div>
+        <h3>我独立完成的工作</h3>
+        <p>截图来自实际搭建的网站首页，品牌与公司信息已脱敏。</p>
+        <ul>
+          <li>站点信息架构与页面视觉搭建</li>
+          <li>产品、设备、解决方案和新闻栏目规划</li>
+          <li>中英文入口与海外客户阅读路径</li>
+          <li>产品浏览、获取报价等询盘转化入口</li>
+          <li>企业实力、认证与全球业务信息展示</li>
+          <li>WordPress 内容发布、SEO 基础与持续运营</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
