@@ -275,6 +275,7 @@
     <a href="#website">独立站案例</a>
     <a href="#evidence">真实证据</a>
     <a href="#decisions">设计决策</a>
+    <a href="#demo">交互演示</a>
     <a href="#templates">下载模板</a>
     <a href="#about">我的贡献</a>
   </div>
@@ -348,7 +349,7 @@
 <!-- WORK 1 -->
 <section class="alt" id="workflows">
   <div class="wrap">
-    <div class="sec-tag blue">作品一 · 内容生产</div>
+    <div class="sec-tag blue">作品二 · 独立站内容生产</div>
     <h2>WordPress 多语言自动成文</h2>
     <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
     <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案编撰、Word 排版、独立站上传和内容归档整合为一次自动运行，日常操作缩减为放入产品图与审核成品。</div>
@@ -482,10 +483,10 @@
 </section>
 
 <!-- WORK 2 -->
-<section>
+<section id="social-workflow">
   <div class="wrap">
-    <div class="sec-tag">作品二 · 社媒分发</div>
-    <h2>社交自动发布（Facebook / YouTube / LinkedIn）</h2>
+    <div class="sec-tag">作品一 · 海外社媒分发</div>
+    <h2>海外社媒自动发布（Facebook / YouTube / LinkedIn）</h2>
     <div class="lead">每周一三五 17:00，从队列取出待发内容，按星期自动分流，将图文与视频发布至社交与视频平台，失败自动归档。</div>
     <div class="case-result"><b>效率变化：</b>取消逐个平台登录、重复编辑文案、上传素材和手动发布的流程；同一份队列内容可自动适配并分发至多个海外渠道。</div>
 
@@ -500,7 +501,7 @@
       <div class="story">
         <div class="blk teal">
           <h4><span class="dot">1</span>起点：内容已生成，却难以高效发布</h4>
-          <p>作品一产出的内容仍需人工逐篇粘贴至 Facebook、上传视频至 YouTube——重复、易遗漏、格式常错。我把"发布"也转为队列机制：待发内容投入文件夹，到点由计算机自动发送。</p>
+          <p>作品二产出的内容仍需人工逐篇粘贴至 Facebook、上传视频至 YouTube——重复、易遗漏、格式常错。我把"发布"也转为队列机制：待发内容投入文件夹，到点由计算机自动发送。</p>
         </div>
         <div class="blk teal">
           <h4><span class="dot">2</span>以"队列"替代"逐次手动"</h4>
@@ -526,7 +527,7 @@
 
       <h3 style="margin-top:34px">工作流程</h3>
       <div class="diagram">
-        <svg viewBox="0 0 760 360" role="img" aria-label="社交自动发布流程图">
+        <svg viewBox="0 0 760 360" role="img" aria-label="社媒自动发布流程图">
           <defs>
             <marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
               <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"></path>
@@ -595,7 +596,7 @@
 </section>
 
 <!-- DEMO · 模拟操作 -->
-<section class="alt demo portfolio-deep" id="demo">
+<section class="alt demo" id="demo">
   <div class="wrap">
     <div class="sec-tag blue">第一部分 · 模拟操作</div>
     <h2>点一下，看它怎么跑</h2>
@@ -603,7 +604,7 @@
 
     <div class="tabs">
       <div class="tab active" data-tab="a"><span class="tnum">1</span>WordPress 多语言自动成文</div>
-      <div class="tab" data-tab="b"><span class="tnum">2</span>社交自动发布 FB / LinkedIn</div>
+      <div class="tab" data-tab="b"><span class="tnum">2</span>社媒自动发布 FB / LinkedIn</div>
     </div>
 
     <!-- WORK A -->
@@ -638,14 +639,14 @@
     <!-- WORK B -->
     <div class="op" id="op-b">
       <div class="cfg">
-        <div class="k">任务名称</div><div class="v">社交自动发布 FB / LinkedIn</div>
+        <div class="k">任务名称</div><div class="v">社媒自动发布 FB / LinkedIn</div>
         <div class="k">触发方式</div><div class="v"><code>定时</code></div>
         <div class="k">运行周期</div><div class="v">每周 <code>一 / 三 / 五</code> ，时间 <code>17:00</code></div>
         <div class="k">工作目录</div><div class="v"><code>…\TK\social_auto</code></div>
       </div>
       <details class="pwrap">
         <summary class="ph"><span>真实提示词（已脱敏） <span class="tag">PROMPT</span></span></summary>
-        <pre class="prompt">你是「社交自动发布」定时任务。请按以下步骤执行，不要修改任何文件，只运行并汇报结果：
+        <pre class="prompt">你是「社媒自动发布」定时任务。请按以下步骤执行，不要修改任何文件，只运行并汇报结果：
 
 1. 切换到工作目录：…\TK\social_auto
 2. 运行发布脚本（使用隔离 venv 的 python）：run_once.py
@@ -676,7 +677,7 @@
     <div class="lead">下面是自动任务实际产出的样例（取自真实运行记录，已脱敏、不含链接）。运行上方演示后，对应卡片会高亮。</div>
 
     <div class="group">
-      <h3>作品一 · WordPress 多语言自动成文</h3>
+      <h3>作品二 · WordPress 多语言自动成文</h3>
       <div class="gd">一次运行，三份产出，各走各的路。</div>
       <div class="cards" id="cards-a">
         <div class="card" data-c="a">
@@ -704,7 +705,7 @@
     </div>
 
     <div class="group">
-      <h3>作品二 · 社交自动发布</h3>
+      <h3>作品一 · 海外社媒自动发布</h3>
       <div class="gd">从队列读取待发 Word，自动分流到各渠道。</div>
       <div class="cards" id="cards-b">
         <div class="card" data-c="b">
@@ -897,6 +898,16 @@
 </footer>
 
 <script>
+  // Present portfolio cases in job-relevant priority order:
+  // 1) overseas social media, 2) WordPress content workflow, 3) independent website.
+  const socialCase = document.getElementById('social-workflow');
+  const wordpressCase = document.getElementById('workflows');
+  const websiteCase = document.getElementById('website');
+  if (socialCase && wordpressCase && websiteCase) {
+    wordpressCase.parentNode.insertBefore(socialCase, wordpressCase);
+    wordpressCase.parentNode.insertBefore(websiteCase, wordpressCase.nextSibling);
+  }
+
   // ---- tabs ----
   document.querySelectorAll('.demo .tab').forEach(t=>{
     t.addEventListener('click',()=>{
