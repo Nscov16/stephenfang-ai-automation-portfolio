@@ -127,6 +127,11 @@
   .site-case p{font-size:14.5px;color:var(--muted);margin:0 0 12px}
   .site-case ul{font-size:14px;color:#33405a;padding-left:20px;margin:0}
   .site-case li{margin:7px 0}
+  .decisions{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+  .decision{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+  .decision .q{font-size:15.5px;font-weight:800;color:var(--ink);margin-bottom:7px}
+  .decision .a{font-size:14px;color:var(--muted)}
+  .decision .tradeoff{display:inline-block;margin-top:10px;background:var(--brand-soft);color:var(--brand);border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700}
 
   /* ARCHITECTURE */
   .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
@@ -233,7 +238,7 @@
     .hl,.stats{grid-template-columns:1fr}
     .stats{grid-template-columns:1fr 1fr}
     .impact-grid{grid-template-columns:1fr}
-    .compare,.evidence-grid,.contrib,.site-case{grid-template-columns:1fr}
+    .compare,.evidence-grid,.contrib,.site-case,.decisions{grid-template-columns:1fr}
     .downloads{grid-template-columns:1fr}
   }
   @media (max-width:760px){
@@ -265,6 +270,7 @@
     <a href="#workflows">工作流案例</a>
     <a href="#website">独立站案例</a>
     <a href="#evidence">真实证据</a>
+    <a href="#decisions">设计决策</a>
     <a href="#demo">交互演示</a>
     <a href="#templates">下载模板</a>
     <a href="#about">我的贡献</a>
@@ -775,6 +781,47 @@
       </article>
     </div>
     <div class="note"><b>安全说明：</b>下载包仅包含示例配置。使用者需自行申请平台 API 权限，并将真实凭据保存在本地；请勿将配置文件提交至公开仓库。</div>
+  </div>
+</section>
+
+<!-- DESIGN DECISIONS -->
+<section id="decisions">
+  <div class="wrap">
+    <div class="sec-tag">AI 效能部署方法</div>
+    <h2>关键设计决策</h2>
+    <div class="lead">自动化不是把所有步骤交给 AI，而是判断哪些适合自动执行、哪些需要人工把关，并为失败和重跑预留安全边界。</div>
+    <div class="decisions">
+      <article class="decision">
+        <div class="q">为什么保留人工审核？</div>
+        <div class="a">AI 负责读图、成文、排版和建稿；公开发布前仍可检查专业术语、品牌口径与事实准确性，避免效率提升以内容风险为代价。</div>
+        <span class="tradeoff">效率 × 内容质量</span>
+      </article>
+      <article class="decision">
+        <div class="q">为什么采用文件队列？</div>
+        <div class="a">当前内容规模不需要额外数据库。素材放入约定目录即可触发处理，团队容易理解、迁移和排查，部署成本也更低。</div>
+        <span class="tradeoff">够用 × 低维护</span>
+      </article>
+      <article class="decision">
+        <div class="q">为什么必须做幂等？</div>
+        <div class="a">定时任务可能重跑，网络也可能中断。通过发布日志和媒体映射识别已处理素材，避免重复发文、重复上传图片和重复触达用户。</div>
+        <span class="tradeoff">自动化 × 防误发</span>
+      </article>
+      <article class="decision">
+        <div class="q">为什么失败内容单独归档？</div>
+        <div class="a">令牌过期或接口异常时不丢弃素材。失败内容进入独立目录并写入日志，修复配置后可安全重跑，形成可追溯的恢复机制。</div>
+        <span class="tradeoff">容错 × 可追溯</span>
+      </article>
+      <article class="decision">
+        <div class="q">为什么按星期分流渠道？</div>
+        <div class="a">文档与视频的生产节奏不同。周一组合发布、周三侧重视频、周五侧重图文，在维持更新频率的同时避免同一天集中消耗素材。</div>
+        <span class="tradeoff">稳定频率 × 素材节奏</span>
+      </article>
+      <article class="decision">
+        <div class="q">为什么整理成可复制模板？</div>
+        <div class="a">把真实凭据与业务知识从程序中分离，使用示例配置和知识库模板，让同类企业只需替换账号、口径与排期即可再次部署。</div>
+        <span class="tradeoff">项目交付 × 规模复用</span>
+      </article>
+    </div>
   </div>
 </section>
 
