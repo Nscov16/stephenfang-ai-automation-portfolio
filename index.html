@@ -92,9 +92,17 @@
   .stat{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 14px 18px;text-align:center;box-shadow:var(--shadow);transition:.18s}
   .stat::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--brand),var(--teal))}
   .stat:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(16,24,40,.10)}
-  .stat .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:20px;font-weight:800;line-height:1}
+  .stat .n{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:38px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:18px;font-weight:800;line-height:1}
   .stat .n.teal{background:var(--teal-soft);color:var(--teal)}
   .stat .l{font-size:13px;color:var(--muted);margin-top:12px}
+  .impact{margin-top:20px;background:linear-gradient(135deg,#0f172a,#172554);color:#fff;border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+  .impact h3{margin:0 0 14px;font-size:20px}
+  .impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .impact-item{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:12px;padding:16px}
+  .impact-item b{display:block;color:#93c5fd;font-size:14px;margin-bottom:5px}
+  .impact-item span{font-size:14.5px;color:#e2e8f0}
+  .case-result{margin-top:18px;border-left:4px solid var(--teal);background:var(--teal-soft);border-radius:0 10px 10px 0;padding:13px 16px;color:#164e63;font-size:14.5px}
+  .case-result b{color:#0f766e}
 
   /* ARCHITECTURE */
   .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
@@ -195,6 +203,7 @@
     .hero h1{font-size:30px}
     .hl,.stats{grid-template-columns:1fr}
     .stats{grid-template-columns:1fr 1fr}
+    .impact-grid{grid-template-columns:1fr}
     .downloads{grid-template-columns:1fr}
   }
   @media (max-width:760px){
@@ -226,10 +235,19 @@
       两套自动化由 WorkBuddy 定时任务驱动，串成「内容生产 → 多语言发布 → 社媒分发」闭环：一张产品图自动写成多语言文章，再分发至社交与视频渠道。系统由我独立从 0 到 1 搭建，并整理成可下载、可配置、可再次部署的模板。
     </div>
     <div class="stats" aria-label="项目成果">
-      <div class="stat"><div class="n">3</div><div class="l">每周约节省工作日</div></div>
-      <div class="stat"><div class="n teal">100+</div><div class="l">累计发布内容</div></div>
+      <div class="stat"><div class="n">3天</div><div class="l">每周节省约 3 个工作日</div></div>
+      <div class="stat"><div class="n teal">100条</div><div class="l">累计发布约 100 条内容</div></div>
       <div class="stat"><div class="n">2</div><div class="l">可复用工作流</div></div>
       <div class="stat"><div class="n teal">4</div><div class="l">已覆盖发布渠道</div></div>
+    </div>
+    <div class="impact">
+      <h3>业务成果：从多平台手工作业，变成一套定时运行的内容流水线</h3>
+      <div class="impact-grid">
+        <div class="impact-item"><b>工时优化</b><span>将原本用于读图、编写中英文文案、排版上传和逐平台发布的重复工作，压缩为素材入队与结果检查，每周约节省 3 个工作日。</span></div>
+        <div class="impact-item"><b>真实产出</b><span>两套工作流已累计支撑约 100 条官网与海外社媒内容发布，不是概念演示，而是持续运行的实际交付。</span></div>
+        <div class="impact-item"><b>步骤减少</b><span>无需分别进入每个社媒后台重复编撰文案、上传素材和设置发布；统一队列一次准备，系统自动解析并分发。</span></div>
+        <div class="impact-item"><b>运营可控</b><span>通过幂等、防重复、失败重试、成功与失败归档及日志追踪，降低误发、漏发和重复发布风险。</span></div>
+      </div>
     </div>
     <div class="cal-label">运行节奏 · 每周自动触发</div>
     <div class="cal center">
@@ -250,6 +268,7 @@
     <div class="sec-tag blue">作品一 · 内容生产</div>
     <h2>WordPress 多语言自动成文</h2>
     <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
+    <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案编撰、Word 排版、独立站上传和内容归档整合为一次自动运行，日常操作缩减为放入产品图与审核成品。</div>
 
     <div class="card">
       <h3>从 0 到 1 的搭建过程</h3>
@@ -280,45 +299,7 @@
         </div>
         <div class="blk">
           <h4><span class="dot">6</span>最终形态</h4>
-          <p>如今每周一三五无需人工干预：官网自动新增英文文章、国内平台获中文稿、存档新增英文底稿。日常只需向 inbox 投入新图。</p>
-        </div>
-      </div>
-
-      <h3 style="margin-top:34px">工作流程</h3>
-      <div class="diagram">
-        <svg viewBox="0 0 760 340" role="img" aria-label="WordPress 多语言自动成文流程图">
-          <defs>
-            <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"></path>
-            </marker>
-          </defs>
-          <rect class="node" x="20" y="140" width="110" height="62" rx="10"></rect>
-          <text class="node-text" x="75" y="160">产品图 inbox</text>
-          <text class="node-sub" x="75" y="180">原始素材</text>
-
-          <rect class="node brand" x="160" y="140" width="120" height="62" rx="10"></rect>
-          <text class="node-text" x="220" y="160">定时触发</text>
-          <text class="node-sub" x="220" y="180">周一三五 09:00</text>
-
-          <rect class="node" x="320" y="140" width="120" height="62" rx="10"></rect>
-          <text class="node-text" x="380" y="160">多模态读图</text>
-          <text class="node-sub" x="380" y="180">+ 知识库</text>
-
-          <rect class="node brand" x="480" y="140" width="120" height="62" rx="10"></rect>
-          <text class="node-text" x="540" y="160">三版成文</text>
-          <text class="node-sub" x="540" y="180">1 图 → 3 文</text>
-
-          <rect class="node teal" x="630" y="30" width="130" height="60" rx="10"></rect>
-          <text class="node-text" x="695" y="50">英文完整版</text>
-          <text class="node-sub" x="695" y="70">WP 发布</text>
-
-          <rect class="node teal" x="630" y="140" width="130" height="60" rx="10"></rect>
-          <text class="node-text" x="695" y="160">中文精简版</text>
-          <text class="node-sub" x="695" y="180">Word 包</text>
-
-          <rect class="node teal" x="630" y="250" width="130" height="60" rx="10"></rect>
-          <text class="node-text" x="695" y="270">英文精简版</text>
-          <…1255 tokens truncated…时触发</text>
+          <p>如今每周一三五无需人工干预：官网自动新增英文文章、国内平台获中文稿、存档…1826 tokens truncated…时触发</text>
           <text class="node-sub" x="225" y="190">周一三五 17:00</text>
 
           <rect class="node" x="320" y="150" width="140" height="62" rx="10"></rect>
