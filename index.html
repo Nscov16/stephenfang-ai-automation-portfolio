@@ -44,6 +44,10 @@
   .btn.primary{background:var(--brand);color:#fff}
   .btn.secondary{background:#fff;color:var(--brand)}
   .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .quick-nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .quick-nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+  .quick-nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;padding:6px 11px;border-radius:999px}
+  .quick-nav a:hover{color:var(--brand);background:var(--brand-soft)}
 
   /* SECTION */
   section{padding:60px 0;border-bottom:1px solid var(--line)}
@@ -166,8 +170,13 @@
   .demo .cfg .k{font-size:13px;color:var(--muted);font-weight:600}
   .demo .cfg .v{font-size:14.5px;color:var(--ink)}
   .demo .cfg .v code{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:13px}
-  .demo .pwrap{margin-bottom:18px}
+  .demo .pwrap{margin-bottom:18px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
   .demo .pwrap .ph{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .demo .pwrap summary.ph{cursor:pointer;margin:0;padding:14px 16px;list-style:none;justify-content:space-between}
+  .demo .pwrap summary.ph::-webkit-details-marker{display:none}
+  .demo .pwrap summary.ph::after{content:"展开技术细节 ＋";color:var(--brand);font-size:12px}
+  .demo .pwrap[open] summary.ph::after{content:"收起技术细节 −"}
+  .demo .pwrap pre.prompt{margin:0 14px 14px}
   .demo .pwrap .ph .tag{font-size:11px;background:var(--teal-soft);color:var(--teal);border-radius:999px;padding:2px 9px;font-weight:700}
   .demo pre.prompt{margin:0;background:#0f1729;color:#d7e3f4;border-radius:12px;padding:16px 18px;max-height:300px;overflow:auto;font-size:12.5px;line-height:1.7;white-space:pre-wrap;font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
   .demo .runbar{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
@@ -237,11 +246,23 @@
     <div class="sub">独立站内容生产 → 多语言发布 → 海外社媒分发，一条可运行、可追踪、可复制的自动化闭环。</div>
     <div class="role">搭建者：<b>StephenFang</b> ｜ AI 效能部署 / 工作流搭建 / 海外内容运营</div>
     <div class="hero-actions">
-      <a class="btn primary" href="#templates">下载可复用模板</a>
-      <a class="btn secondary" href="#demo">查看交互演示</a>
+      <a class="btn primary" href="#impact">先看业务成果</a>
+      <a class="btn secondary" href="#evidence">查看真实证据</a>
+      <a class="btn secondary" href="#templates">下载模板</a>
     </div>
   </div>
 </header>
+
+<nav class="quick-nav" aria-label="作品集快速导航">
+  <div class="wrap">
+    <a href="#impact">成果对比</a>
+    <a href="#workflows">工作流案例</a>
+    <a href="#evidence">真实证据</a>
+    <a href="#demo">交互演示</a>
+    <a href="#templates">下载模板</a>
+    <a href="#about">我的贡献</a>
+  </div>
+</nav>
 
 <!-- OVERVIEW -->
 <section>
@@ -278,43 +299,13 @@
 </section>
 
 <!-- BEFORE / AFTER -->
-<section class="alt">
+<section class="alt" id="impact">
   <div class="wrap">
     <div class="sec-tag blue">效率改造</div>
     <h2>自动化前后对比</h2>
     <div class="lead">“每周节省约 3 个工作日”基于每周一、三、五的实际运营节奏估算，节省主要来自文案生产、排版上传和跨平台重复发布。</div>
     <div class="compare">
-      <div class="compare-col">
-        <h3>自动化前 · 多平台手工作业</h3>
-        <ul>
-          <li>逐张识别产品图并整理卖点</li>
-          <li>分别编写中英文内容与视频介绍</li>
-          <li>手动制作 Word、排版并上传独立站</li>
-          <li>逐一登录社媒后台、重复上传与发布</li>
-          <li>依靠人工记录完成状态追踪</li>
-        </ul>
-      </div>
-      <div class="compare-col after">
-        <h3>自动化后 · 素材入队 + 人工审核</h3>
-        <ul>
-          <li>AI 读图并结合企业知识库生成内容</li>
-          <li>一次产生中英文多版本成品</li>
-          <li>自动创建 WordPress 文章与特色图</li>
-          <li>统一队列按排期分发至多个海外渠道</li>
-          <li>日志、归档、重试与防重复自动执行</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK 1 -->
-<section class="alt">
-  <div class="wrap">
-    <div class="sec-tag blue">作品一 · 内容生产</div>
-    <h2>WordPress 多语言自动成文</h2>
-    <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
-    <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案…2975 tokens truncated…        <line x1="600" y1="190" x2="625" y2="218" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+      <div class="co…3328 tokens truncated…e="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
           <line x1="600" y1="200" x2="625" y2="298" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
 
           <text x="380" y="340" class="node-sub" text-anchor="middle">成功 → posted/，失败 → failed/，运行全程有日志可查</text>
@@ -359,8 +350,8 @@
         <div class="k">运行周期</div><div class="v">每周 <code>一 / 三 / 五</code> ，时间 <code>09:00</code></div>
         <div class="k">工作目录</div><div class="v"><code>…\2026-07-28-16-14-15\wp-auto</code></div>
       </div>
-      <div class="pwrap">
-        <div class="ph">提示词（真实配置，已脱敏路径）<span class="tag">PROMPT</span></div>
+      <details class="pwrap">
+        <summary class="ph"><span>真实提示词（已脱敏） <span class="tag">PROMPT</span></span></summary>
         <pre class="prompt">你是 WordPress + 多语言自动成文助手。本任务在每周一、周三、周五 09:00 各运行一次，每次只处理 1 张未处理过的图片：英文版发到企业独立站（WordPress，自动设特色图片并直接发布，保持完整长度），中文版生成可用于国内平台手动发布的包（Word 不含图 + 独立图片文件，按日期分类，正文≤400中文字），同时生成一份英文版 Word 存档（不含图、正文≤400英文词）+ 独立图片按日期归类。按以下步骤执行，不要跳过。
 
 【0. 读取配置】从当前目录读取 config.json；若凭证仍是占位符则停止提示。
@@ -371,7 +362,7 @@
 【5. 调用脚本发布与归档】用隔离 venv 的 python 依次运行 run_drafts.py（发WP+设特色图）、gen_zh_output.py（中企动力Word包）、build_word.py（英文存档Word）；内置 LiteSpeed 所需 User-Agent、Content-Type=application/json、三套幂等日志。
 【6. 归档】图片从 inbox 移入 processed/。
 【7. 运行报告】输出本篇标题、各产物路径、剩余未处理数、是否报错。</pre>
-      </div>
+      </details>
       <div class="runbar">
         <button class="runbtn" id="run-a"><span class="tri">▶</span> 运行一次</button>
         <span class="runtip">点击后按真实流程逐步演示（约 6 秒）</span>
@@ -388,8 +379,8 @@
         <div class="k">运行周期</div><div class="v">每周 <code>一 / 三 / 五</code> ，时间 <code>17:00</code></div>
         <div class="k">工作目录</div><div class="v"><code>…\TK\social_auto</code></div>
       </div>
-      <div class="pwrap">
-        <div class="ph">提示词（真实配置，已脱敏路径）<span class="tag">PROMPT</span></div>
+      <details class="pwrap">
+        <summary class="ph"><span>真实提示词（已脱敏） <span class="tag">PROMPT</span></span></summary>
         <pre class="prompt">你是「社交自动发布」定时任务。请按以下步骤执行，不要修改任何文件，只运行并汇报结果：
 
 1. 切换到工作目录：…\TK\social_auto
@@ -398,7 +389,7 @@
 4. 如果队列为空，简要说明「本次无待发文档」即可。
 
 注意：只运行脚本并汇报，不要改动 config.json 或任何文档。</pre>
-      </div>
+      </details>
       <div class="runbar">
         <button class="runbtn" id="run-b"><span class="tri">▶</span> 运行一次</button>
         <span class="runtip">点击后按真实流程逐步演示（约 5 秒）</span>
@@ -486,7 +477,7 @@
 </section>
 
 <!-- REAL EVIDENCE -->
-<section class="alt">
+<section class="alt" id="evidence">
   <div class="wrap">
     <div class="sec-tag blue">真实运行证据</div>
     <h2>不是流程概念，而是已运行的交付</h2>
@@ -580,7 +571,7 @@
 </section>
 
 <!-- ABOUT -->
-<section>
+<section id="about">
   <div class="wrap">
     <div class="sec-tag">关于我</div>
     <h2>搭建者</h2>
