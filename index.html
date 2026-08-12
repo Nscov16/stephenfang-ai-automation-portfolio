@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StephenFang · AI 效能部署与工作流作品集</title>
+<meta name="description" content="StephenFang 的 AI 效能部署与工作流作品集：独立站内容生产、海外社媒分发与可复用自动化模板。" />
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#1a2233;
+    --muted:#5b6678;
+    --line:#e6eaf0;
+    --soft:#f6f8fb;
+    --brand:#2563eb;
+    --brand-soft:#eaf1ff;
+    --teal:#0d9488;
+    --teal-soft:#e6f6f4;
+    --amber:#b45309;
+    --amber-soft:#fef3e2;
+    --shadow:0 1px 3px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--brand)}
+
+  /* HERO */
+  .hero{padding:72px 0 56px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fbfcfe 0%,#ffffff 100%)}
+  .eyebrow{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:600;background:var(--brand-soft);padding:5px 12px;border-radius:999px}
+  .hero h1{font-size:40px;line-height:1.2;margin:18px 0 8px;font-weight:800;letter-spacing:-.01em}
+  .hero .sub{font-size:15px;color:var(--muted);font-weight:500}
+  .hero .role{margin-top:20px;font-size:14px;color:var(--muted)}
+  .hero .role b{color:var(--ink)}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;border:1px solid var(--brand);transition:.18s}
+  .btn.primary{background:var(--brand);color:#fff}
+  .btn.secondary{background:#fff;color:var(--brand)}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+  /* SECTION */
+  section{padding:60px 0;border-bottom:1px solid var(--line)}
+  section.alt{background:var(--soft)}
+  .sec-tag{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--teal);text-transform:uppercase}
+  .sec-tag.blue{color:var(--brand)}
+  h2{font-size:28px;margin:10px 0 6px;font-weight:800;letter-spacing:-.01em}
+  h3{font-size:21px;margin:0 0 4px;font-weight:800}
+  .lead{font-size:16px;color:var(--muted);max-width:780px;margin:14px 0 0}
+
+  /* CARD */
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow);margin-top:26px}
+  .card h3{margin-bottom:4px}
+  .pos{font-size:15.5px;color:var(--muted);margin:6px 0 22px}
+
+  /* DIAGRAM */
+  .diagram{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:18px;margin:8px 0 26px;overflow-x:auto}
+  .diagram svg{display:block;width:100%;height:auto;min-width:680px}
+  .node{fill:#fff;stroke:#c9d4e3;stroke-width:1.5}
+  .node.brand{fill:var(--brand-soft);stroke:var(--brand)}
+  .node.teal{fill:var(--teal-soft);stroke:var(--teal)}
+  .node-text{font-size:12.5px;fill:var(--ink);font-weight:600;text-anchor:middle;dominant-baseline:middle}
+  .node-sub{font-size:10.5px;fill:var(--muted);text-anchor:middle;dominant-baseline:middle}
+  .cap{font-size:12.5px;color:var(--muted);text-align:center;margin-top:10px}
+
+  /* NARRATIVE */
+  .story{margin-top:26px}
+  .story .blk{margin-top:22px}
+  .story .blk:first-child{margin-top:0}
+  .story h4{font-size:16px;margin:0 0 8px;display:flex;align-items:center;gap:10px}
+  .story h4 .dot{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .story .blk.teal h4 .dot{background:var(--teal)}
+  .story p{font-size:15px;color:#33405a;margin:0}
+  .story ul{margin:8px 0 0;padding-left:0;list-style:none}
+  .story ul li{font-size:15px;color:#33405a;padding:5px 0 5px 22px;position:relative}
+  .story ul li::before{content:"";position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+  .story .blk.teal ul li::before{background:var(--teal)}
+
+  /* HIGHLIGHTS */
+  .hl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+  .hl div{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14.5px}
+  .hl b{display:block;color:var(--ink);font-weight:700;margin-bottom:2px;font-size:15px}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .stat{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 14px 18px;text-align:center;box-shadow:var(--shadow);transition:.18s}
+  .stat::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--brand),var(--teal))}
+  .stat:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(16,24,40,.10)}
+  .stat .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:20px;font-weight:800;line-height:1}
+  .stat .n.teal{background:var(--teal-soft);color:var(--teal)}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:12px}
+
+  /* ARCHITECTURE */
+  .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+  .layer{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;gap:18px;align-items:flex-start;transition:.18s}
+  .layer:hover{border-color:#c9d4e3;box-shadow:0 8px 22px rgba(16,24,40,.07);transform:translateY(-2px)}
+  .layer .badge{flex:0 0 auto;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff}
+  .layer .b1{background:var(--brand)}
+  .layer .b2{background:var(--teal)}
+  .layer .b3{background:#475569}
+  .layer h4{margin:0 0 4px;font-size:16px}
+  .layer p{margin:0;font-size:14.5px;color:var(--muted)}
+  .chips{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13.5px;color:var(--ink)}
+
+  /* ABOUT */
+  .about{font-size:16px;color:var(--ink);max-width:780px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow);margin-top:20px}
+  .about b{color:var(--brand)}
+
+  /* DOWNLOADS */
+  .downloads{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  .download-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+  .download-card .label{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:.08em;text-transform:uppercase}
+  .download-card h3{margin:8px 0}
+  .download-card p{font-size:14px;color:var(--muted);margin:0 0 16px}
+  .download-card ul{font-size:13.5px;color:#33405a;padding-left:18px;margin:0 0 18px}
+
+  /* RUN SCHEDULE CALENDAR */
+  .cal{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .cal.center{justify-content:center}
+  .day{width:118px;height:56px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:14px;color:var(--muted);box-shadow:var(--shadow)}
+  .day b{font-size:15px;color:var(--ink)}
+  .day.active{color:var(--brand);border-color:var(--brand);background:var(--brand-soft)}
+  .day.active b{color:var(--brand)}
+  .cal-label{font-size:13px;color:var(--muted);margin-top:24px;letter-spacing:.04em}
+
+  footer{padding:30px 0 50px;color:var(--muted);font-size:13px;text-align:center}
+
+  /* ===== DEMO (merged interactive) ===== */
+  .demo .tabs{display:flex;gap:10px;margin:26px 0 0}
+  .demo .tabs .tab{flex:1;border:1px solid var(--line);background:#fff;border-radius:12px 12px 0 0;padding:14px 16px;cursor:pointer;font-weight:700;color:var(--muted);transition:.15s}
+  .demo .tabs .tab.active{color:var(--ink);border-bottom-color:#fff;background:#fff;box-shadow:var(--shadow)}
+  .demo .tabs .tab .tnum{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--muted);color:#fff;font-size:12px;align-items:center;justify-content:center;margin-right:8px}
+  .demo .tabs .tab.active .tnum{background:var(--brand)}
+  .demo .op{background:#fff;border:1px solid var(--line);border-radius:0 12px 12px 12px;box-shadow:var(--shadow);padding:24px;display:none}
+  .demo .op.active{display:block}
+  .demo .cfg{display:grid;grid-template-columns:120px 1fr;gap:10px 16px;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+  .demo .cfg .k{font-size:13px;color:var(--muted);font-weight:600}
+  .demo .cfg .v{font-size:14.5px;color:var(--ink)}
+  .demo .cfg .v code{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:13px}
+  .demo .pwrap{margin-bottom:18px}
+  .demo .pwrap .ph{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .demo .pwrap .ph .tag{font-size:11px;background:var(--teal-soft);color:var(--teal);border-radius:999px;padding:2px 9px;font-weight:700}
+  .demo pre.prompt{margin:0;background:#0f1729;color:#d7e3f4;border-radius:12px;padding:16px 18px;max-height:300px;overflow:auto;font-size:12.5px;line-height:1.7;white-space:pre-wrap;font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+  .demo .runbar{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
+  .demo .runbtn{border:none;background:var(--brand);color:#fff;font-size:15px;font-weight:700;padding:12px 22px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.15s}
+  .demo .runbtn:hover{background:#1d4ed8}
+  .demo .runbtn:disabled{background:#9db4e6;cursor:not-allowed}
+  .demo .runbtn .tri{font-size:12px}
+  .demo .runtip{font-size:13px;color:var(--muted)}
+  .demo .console{margin-top:14px;background:#0f1729;border-radius:12px;padding:16px 18px;display:none;min-height:60px}
+  .demo .console.show{display:block}
+  .demo .logline{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px;color:#cfe0f5;opacity:0;transform:translateY(6px);animation:fadein .35s forwards;padding:3px 0;display:flex;gap:10px}
+  .demo .logline .dot{color:#34d399;flex:0 0 auto}
+  .demo .logline .lt{color:#93c5fd;font-weight:600;flex:0 0 auto}
+  .demo .logline .ld{color:#cbd5e1}
+  @keyframes fadein{to{opacity:1;transform:none}}
+  .demo .progress{height:6px;background:#1e293b;border-radius:999px;margin-top:12px;overflow:hidden;display:none}
+  .demo .progress.show{display:block}
+  .demo .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2563eb,#0d9488);transition:width .4s}
+  .demo .group{margin-top:26px}
+  .demo .group h3{font-size:19px;margin:0 0 4px}
+  .demo .group .gd{font-size:14px;color:var(--muted);margin:0 0 16px}
+  .demo .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .demo .cards#cards-b{grid-template-columns:repeat(4,1fr);gap:12px}
+  .demo .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);transition:.2s}
+  .demo .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(16,24,40,.10)}
+  .demo .card.hl{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft),var(--shadow)}
+  .demo .card .ct{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
+  .demo .card .ct.teal{color:var(--teal)}
+  .demo .card .tt{font-size:14.5px;font-weight:800;margin:6px 0 4px;line-height:1.35}
+  .demo .card .tx{font-size:12.5px;color:var(--muted);margin:0;line-height:1.6}
+  .demo .card .meta{margin-top:10px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+  .demo .card .chk{display:inline-flex;align-items:center;gap:5px;color:var(--teal);font-weight:700;font-size:12px;margin-top:8px}
+  .demo .card .chk .box{width:16px;height:16px;border-radius:4px;background:var(--teal);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+  .demo .card.clickable{cursor:pointer}
+  .demo .note{background:var(--amber-soft);border:1px solid #f3d8a8;border-radius:12px;padding:14px 16px;font-size:13.5px;color:#7c4a06;margin-top:22px}
+  .demo .note b{color:var(--amber)}
+
+  @media print{
+    body{font-size:12px}
+    .hero,section{border-bottom:1px solid #ddd}
+    .card,.stat,.about{box-shadow:none;break-inside:avoid}
+    .hl,.stats,.layers,.story{break-inside:avoid}
+    section{padding:36px 0}
+    .demo .progress{display:none}
+  }
+  @media (max-width:720px){
+    .hero h1{font-size:30px}
+    .hl,.stats{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .downloads{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .demo .cards,.demo .cards#cards-b{grid-template-columns:1fr}
+    .demo .cfg{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">AI 效能部署 · Automation Portfolio</span>
+    <h1>把重复运营工作，部署成可复用的 AI 工作流</h1>
+    <div class="sub">独立站内容生产 → 多语言发布 → 海外社媒分发，一条可运行、可追踪、可复制的自动化闭环。</div>
+    <div class="role">搭建者：<b>StephenFang</b> ｜ AI 效能部署 / 工作流搭建 / 海外内容运营</div>
+    <div class="hero-actions">
+      <a class="btn primary" href="#templates">下载可复用模板</a>
+      <a class="btn secondary" href="#demo">查看交互演示</a>
+    </div>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section>
+  <div class="wrap">
+    <div class="lead">
+      两套自动化由 WorkBuddy 定时任务驱动，串成「内容生产 → 多语言发布 → 社媒分发」闭环：一张产品图自动写成多语言文章，再分发至社交与视频渠道。系统由我独立从 0 到 1 搭建，并整理成可下载、可配置、可再次部署的模板。
+    </div>
+    <div class="stats" aria-label="项目成果">
+      <div class="stat"><div class="n">3</div><div class="l">每周约节省工作日</div></div>
+      <div class="stat"><div class="n teal">100+</div><div class="l">累计发布内容</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">可复用工作流</div></div>
+      <div class="stat"><div class="n teal">4</div><div class="l">已覆盖发布渠道</div></div>
+    </div>
+    <div class="cal-label">运行节奏 · 每周自动触发</div>
+    <div class="cal center">
+      <div class="day active"><b>周一</b>文档 + 视频</div>
+      <div class="day"><b>周二</b>—</div>
+      <div class="day active"><b>周三</b>仅视频</div>
+      <div class="day"><b>周四</b>—</div>
+      <div class="day active"><b>周五</b>仅文档</div>
+      <div class="day"><b>周六</b>—</div>
+      <div class="day"><b>周日</b>—</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK 1 -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-tag blue">作品一 · 内容生产</div>
+    <h2>WordPress 多语言自动成文</h2>
+    <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
+
+    <div class="card">
+      <h3>从 0 到 1 的搭建过程</h3>
+      <div class="story">
+        <div class="blk">
+          <h4><span class="dot">1</span>起点：一批产品图，缺乏配套文案</h4>
+          <p>手头数十张制造业产品图，需发布至英文独立站及国内平台。逐张写中英文、排版上传，单张耗时大半天。为此我把流程重构为「投入一张图，自动产出三份成品」。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">2</span>让计算机"理解"图像内容</h4>
+          <p>首要环节是读图：自动化借助多模态能力识别产品图（三瓣旋盖、医疗吸液头或新能源车压铸型芯），并提炼结构亮点、加工难点、适用场景等成文素材，免去逐张人工描述。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">3</span>建立"公司知识库"统一表述口径</h4>
+          <p>仅读图不够，还需"企业视角"。我整理了一份知识库（company-knowledge.md），涵盖公司简介、英文术语、SEO 关键词与合规边界；每次成文前先检索该库，确保三版口径一致、术语统一。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">4</span>一次生成三版，各自分发</h4>
+          <ul>
+            <li><b>英文完整版</b>：专业长文，含小标题与要点，经 WordPress REST API 发布至企业独立站，并自动设为特色图片。</li>
+            <li><b>中文精简版</b>（≤400 字）：地道非机翻的中文内容，生成 Word 包（文字 + 独立图），供发布至国内「中企动力」后台。</li>
+            <li><b>英文精简版</b>（≤400 词）：英文存档 Word，按日期归类，留底备查。</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">5</span>关键工程细节：幂等，绝不重复处理</h4>
+          <p>定时任务每次仅处理"尚未处理"的那张图。三套日志相互印证，重复运行也不会二次发布或生成；处理完毕的图片自动由 inbox 移至 processed/。</p>
+        </div>
+        <div class="blk">
+          <h4><span class="dot">6</span>最终形态</h4>
+          <p>如今每周一三五无需人工干预：官网自动新增英文文章、国内平台获中文稿、存档新增英文底稿。日常只需向 inbox 投入新图。</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:34px">工作流程</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 760 340" role="img" aria-label="WordPress 多语言自动成文流程图">
+          <defs>
+            <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#94a3b8"></path>
+            </marker>
+          </defs>
+          <rect class="node" x="20" y="140" width="110" height="62" rx="10"></rect>
+          <text class="node-text" x="75" y="160">产品图 inbox</text>
+          <text class="node-sub" x="75" y="180">原始素材</text>
+
+          <rect class="node brand" x="160" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="220" y="160">定时触发</text>
+          <text class="node-sub" x="220" y="180">周一三五 09:00</text>
+
+          <rect class="node" x="320" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="380" y="160">多模态读图</text>
+          <text class="node-sub" x="380" y="180">+ 知识库</text>
+
+          <rect class="node brand" x="480" y="140" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="540" y="160">三版成文</text>
+          <text class="node-sub" x="540" y="180">1 图 → 3 文</text>
+
+          <rect class="node teal" x="630" y="30" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="50">英文完整版</text>
+          <text class="node-sub" x="695" y="70">WP 发布</text>
+
+          <rect class="node teal" x="630" y="140" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="160">中文精简版</text>
+          <text class="node-sub" x="695" y="180">Word 包</text>
+
+          <rect class="node teal" x="630" y="250" width="130" height="60" rx="10"></rect>
+          <text class="node-text" x="695" y="270">英文精简版</text>
+          <…1255 tokens truncated…时触发</text>
+          <text class="node-sub" x="225" y="190">周一三五 17:00</text>
+
+          <rect class="node" x="320" y="150" width="140" height="62" rx="10"></rect>
+          <text class="node-text" x="390" y="170">按星期分流</text>
+          <text class="node-sub" x="390" y="190">一文档+视频/三视频/五文档</text>
+
+          <rect class="node brand" x="480" y="150" width="120" height="62" rx="10"></rect>
+          <text class="node-text" x="540" y="170">解析</text>
+          <text class="node-sub" x="540" y="190">正文 / 抽帧写文案</text>
+
+          <rect class="node teal" x="630" y="30" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="50">Facebook 图文</text>
+          <text class="node-sub" x="695" y="68">已跑通</text>
+
+          <rect class="node teal" x="630" y="110" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="130">Facebook 视频</text>
+          <text class="node-sub" x="695" y="148">已跑通</text>
+
+          <rect class="node teal" x="630" y="190" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="210">YouTube 视频</text>
+          <text class="node-sub" x="695" y="228">已跑通</text>
+
+          <rect class="node teal" x="630" y="270" width="130" height="58" rx="10"></rect>
+          <text class="node-text" x="695" y="290">LinkedIn</text>
+          <text class="node-sub" x="695" y="308">已跑通</text>
+
+          <line x1="130" y1="181" x2="155" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="290" y1="181" x2="315" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="460" y1="181" x2="475" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="172" x2="625" y2="58" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="181" x2="625" y2="138" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="190" x2="625" y2="218" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+          <line x1="600" y1="200" x2="625" y2="298" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+
+          <text x="380" y="340" class="node-sub" text-anchor="middle">成功 → posted/，失败 → failed/，运行全程有日志可查</text>
+        </svg>
+      </div>
+
+      <div class="hl">
+        <div><b>队列驱动</b>待发内容进 queue，自动取最旧一条处理</div>
+        <div><b>按星期分流</b>周一文档+视频 / 周三视频 / 周五文档</div>
+        <div><b>视频智能文案</b>抽帧 + 视觉理解，自动写英文帖子</div>
+        <div><b>失败归档</b>成功进 posted/，失败进 failed/，可追查</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="n">✓</div><div class="l">Facebook 图文</div></div>
+        <div class="stat"><div class="n">✓</div><div class="l">Facebook 视频</div></div>
+        <div class="stat"><div class="n">✓</div><div class="l">YouTube 视频</div></div>
+        <div class="stat"><div class="n teal">✓</div><div class="l">LinkedIn 已跑通</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEMO · 模拟操作 -->
+<section class="alt demo" id="demo">
+  <div class="wrap">
+    <div class="sec-tag blue">第一部分 · 模拟操作</div>
+    <h2>点一下，看它怎么跑</h2>
+    <div class="lead">下面仿照 WorkBuddy 配置界面，用两个任务真实的「定时设置 + 提示词」还原操作。点 <b>▶ 运行一次</b>，按真实流程逐步执行，并在末尾亮出本次产出。</div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="a"><span class="tnum">1</span>WordPress 多语言自动成文</div>
+      <div class="tab" data-tab="b"><span class="tnum">2</span>社交自动发布 FB / LinkedIn</div>
+    </div>
+
+    <!-- WORK A -->
+    <div class="op active" id="op-a">
+      <div class="cfg">
+        <div class="k">任务名称</div><div class="v">WordPress 每周一三五成文（英文发站一篇 + 中文手动 + 英文存档归档）</div>
+        <div class="k">触发方式</div><div class="v"><code>定时</code></div>
+        <div class="k">运行周期</div><div class="v">每周 <code>一 / 三 / 五</code> ，时间 <code>09:00</code></div>
+        <div class="k">工作目录</div><div class="v"><code>…\2026-07-28-16-14-15\wp-auto</code></div>
+      </div>
+      <div class="pwrap">
+        <div class="ph">提示词（真实配置，已脱敏路径）<span class="tag">PROMPT</span></div>
+        <pre class="prompt">你是 WordPress + 多语言自动成文助手。本任务在每周一、周三、周五 09:00 各运行一次，每次只处理 1 张未处理过的图片：英文版发到企业独立站（WordPress，自动设特色图片并直接发布，保持完整长度），中文版生成可用于国内平台手动发布的包（Word 不含图 + 独立图片文件，按日期分类，正文≤400中文字），同时生成一份英文版 Word 存档（不含图、正文≤400英文词）+ 独立图片按日期归类。按以下步骤执行，不要跳过。
+
+【0. 读取配置】从当前目录读取 config.json；若凭证仍是占位符则停止提示。
+【1. 公司知识库】读取 company-knowledge.md（英文写作补充包 / 中文口径 / 雷区），写作时按库内口径统一。
+【2. 扫描素材并选 1 张】递归遍历 inbox 图片，排除三套日志中已处理的，挑第一张未处理图。
+【3. 为这 1 张图成文】a. 多模态读图；b. 英文完整版（发站，长度不限）；c. 中文原生≤400字（中企动力Word包）；d. 英文精简版≤400词（英文存档）；e. 均输出 HTML 字符串（含 __IMG__ 占位）。
+【4. 写出文章数据】draft_articles.json / draft_articles_zh.json / draft_articles_en_word.json（各仅本篇 1 条，覆盖写入）。
+【5. 调用脚本发布与归档】用隔离 venv 的 python 依次运行 run_drafts.py（发WP+设特色图）、gen_zh_output.py（中企动力Word包）、build_word.py（英文存档Word）；内置 LiteSpeed 所需 User-Agent、Content-Type=application/json、三套幂等日志。
+【6. 归档】图片从 inbox 移入 processed/。
+【7. 运行报告】输出本篇标题、各产物路径、剩余未处理数、是否报错。</pre>
+      </div>
+      <div class="runbar">
+        <button class="runbtn" id="run-a"><span class="tri">▶</span> 运行一次</button>
+        <span class="runtip">点击后按真实流程逐步演示（约 6 秒）</span>
+      </div>
+      <div class="progress" id="prog-a"><i></i></div>
+      <div class="console" id="con-a"></div>
+    </div>
+
+    <!-- WORK B -->
+    <div class="op" id="op-b">
+      <div class="cfg">
+        <div class="k">任务名称</div><div class="v">社交自动发布 FB / LinkedIn</div>
+        <div class="k">触发方式</div><div class="v"><code>定时</code></div>
+        <div class="k">运行周期</div><div class="v">每周 <code>一 / 三 / 五</code> ，时间 <code>17:00</code></div>
+        <div class="k">工作目录</div><div class="v"><code>…\TK\social_auto</code></div>
+      </div>
+      <div class="pwrap">
+        <div class="ph">提示词（真实配置，已脱敏路径）<span class="tag">PROMPT</span></div>
+        <pre class="prompt">你是「社交自动发布」定时任务。请按以下步骤执行，不要修改任何文件，只运行并汇报结果：
+
+1. 切换到工作目录：…\TK\social_auto
+2. 运行发布脚本（使用隔离 venv 的 python）：run_once.py
+3. 把运行的完整输出复制给用户，并说明：队列里是否有待发 Word、是否成功发布到 Facebook / LinkedIn、是否有文档进入 failed/。
+4. 如果队列为空，简要说明「本次无待发文档」即可。
+
+注意：只运行脚本并汇报，不要改动 config.json 或任何文档。</pre>
+      </div>
+      <div class="runbar">
+        <button class="runbtn" id="run-b"><span class="tri">▶</span> 运行一次</button>
+        <span class="runtip">点击后按真实流程逐步演示（约 5 秒）</span>
+      </div>
+      <div class="progress" id="prog-b"><i></i></div>
+      <div class="console" id="con-b"></div>
+    </div>
+
+    <div class="note">
+      <b>说明：</b>本页为作品集演示用途，使用两个任务<b>真实的定时配置与提示词</b>还原操作过程；演示在本地进行，<b>不连接任何真实账号、不读取令牌、不暴露链接</b>，可安全对外展示。
+    </div>
+  </div>
+</section>
+
+<!-- DEMO · 真实产出样例 -->
+<section class="demo">
+  <div class="wrap">
+    <div class="sec-tag">第二部分 · 真实产出样例</div>
+    <h2>它到底生成了什么</h2>
+    <div class="lead">下面是自动任务实际产出的样例（取自真实运行记录，已脱敏、不含链接）。运行上方演示后，对应卡片会高亮。</div>
+
+    <div class="group">
+      <h3>作品一 · WordPress 多语言自动成文</h3>
+      <div class="gd">一次运行，三份产出，各走各的路。</div>
+      <div class="cards" id="cards-a">
+        <div class="card" data-c="a">
+          <div class="ct">英文站 · 已发布</div>
+          <div class="tt">High-Cavity PP Preform Mould for IV Bag Hanger Integration</div>
+          <div class="tx">Precision Engineering for Medical Packaging — 完整英文长文，自动设特色图后直接发布到企业独立站。</div>
+          <div class="meta">发布编号已脱敏 ｜ 英文完整版 ｜ 含 SEO 关键词</div>
+          <div class="chk"><span class="box">✓</span> 已发布</div>
+        </div>
+        <div class="card" data-c="a">
+          <div class="ct teal">中企动力 · Word 发布包</div>
+          <div class="tt">PP可立袋输液瓶吊环一体瓶坯模具</div>
+          <div class="tx">中文原生稿件 ≤400 字 + 独立产品图，按日期归档，供手动发到「中企动力」后台。</div>
+          <div class="meta">output/zhongqi/YYYY-MM-DD/ ｜ .docx 不含图</div>
+          <div class="chk"><span class="box">✓</span> 已生成</div>
+        </div>
+        <div class="card" data-c="a">
+          <div class="ct teal">英文存档 · Word</div>
+          <div class="tt">PP Preform Mould for IV Bag Hanger Integration</div>
+          <div class="tx">英文精简版 ≤400 词 + 独立产品图，按日期归档留存。</div>
+          <div class="meta">output/bilingual/YYYY-MM-DD/ ｜ .docx 不含图</div>
+          <div class="chk"><span class="box">✓</span> 已存档</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h3>作品二 · 社交自动发布</h3>
+      <div class="gd">从队列读取待发 Word，自动分流到各渠道。</div>
+      <div class="cards" id="cards-b">
+        <div class="card" data-c="b">
+          <div class="ct">Facebook · 图文</div>
+          <div class="tt">新能源汽车压铸型芯</div>
+          <div class="tx">英文图文帖，已发布到 Facebook 公共主页。</div>
+          <div class="meta">真实运行 1 条 ｜ 队列驱动</div>
+          <div class="chk"><span class="box">✓</span> 已发布</div>
+        </div>
+        <div class="card" data-c="b">
+          <div class="ct">Facebook · 视频</div>
+          <div class="tt">产品演示视频（抽帧自动写英文文案）</div>
+          <div class="tx">视频发布前自动抽帧、生成英文文案与标签。</div>
+          <div class="meta">真实运行 5 条</div>
+          <div class="chk"><span class="box">✓</span> 已发布</div>
+        </div>
+        <div class="card" data-c="b">
+          <div class="ct teal">YouTube · 视频</div>
+          <div class="tt">产品演示视频上传</div>
+          <div class="tx">视频自动上传至 YouTube 频道。</div>
+          <div class="meta">真实运行 3 条</div>
+          <div class="chk"><span class="box">✓</span> 已上传</div>
+        </div>
+        <div class="card" data-c="b">
+          <div class="ct teal">LinkedIn · 已跑通</div>
+          <div class="tt">企业主页接口已预留</div>
+          <div class="tx">与 Facebook 同队列分发，填好令牌即启用。</div>
+          <div class="meta">接口已接通</div>
+          <div class="chk"><span class="box">✓</span> 已跑通</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REUSABLE TEMPLATES -->
+<section class="alt" id="templates">
+  <div class="wrap">
+    <div class="sec-tag blue">可复制交付物</div>
+    <h2>下载后，替换配置即可复用</h2>
+    <div class="lead">两套模板已移除真实账号、站点与令牌信息，保留完整目录结构、运行脚本、示例配置和部署说明。凭据仅应填写在本地配置文件中。</div>
+    <div class="downloads">
+      <article class="download-card">
+        <div class="label">Workflow 01</div>
+        <h3>WordPress 多语言内容工作流</h3>
+        <p>适合制造业独立站、跨境官网和需要持续 SEO 内容的团队。</p>
+        <ul>
+          <li>产品图识别与知识库约束</li>
+          <li>中英文多版本内容生成</li>
+          <li>WordPress 草稿、特色图与归档</li>
+          <li>幂等记录，避免重复发布</li>
+        </ul>
+        <a class="btn primary" href="downloads/wordpress-content-workflow-template.zip" download>下载模板 ZIP</a>
+      </article>
+      <article class="download-card">
+        <div class="label">Workflow 02</div>
+        <h3>海外社媒自动发布工作流</h3>
+        <p>适合 Facebook、YouTube、LinkedIn 的图文与视频分发。</p>
+        <ul>
+          <li>Word 与视频素材队列</li>
+          <li>按星期自动分流渠道</li>
+          <li>视频抽帧与英文文案生成</li>
+          <li>失败重试、归档与日志追踪</li>
+        </ul>
+        <a class="btn primary" href="downloads/social-publishing-workflow-template.zip" download>下载模板 ZIP</a>
+      </article>
+    </div>
+    <div class="note"><b>安全说明：</b>下载包仅包含示例配置。使用者需自行申请平台 API 权限，并将真实凭据保存在本地；请勿将配置文件提交至公开仓库。</div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-tag blue">技术底座</div>
+    <h2>三层架构</h2>
+    <div class="lead">两套自动化共用同一工程结构：定时任务负责何时运行，脚本负责如何运行，接口负责产出至何处。即便无代码背景，记住「定时 → 脚本 → 接口」这条主线即可。</div>
+
+    <div class="layers">
+      <div class="layer">
+        <div class="badge b1">调</div>
+        <div><h4>调度层 · Scheduling</h4><p>WorkBuddy 定时任务，rrule 设定周一 / 周三 / 周五，到点自动触发，无需值守。相当于为计算机排定一张每周固定的"待办表"。</p></div>
+      </div>
+      <div class="layer">
+        <div class="badge b2">脚</div>
+        <div><h4>脚本层 · Scripts</h4><p>隔离的 Python 虚拟环境；publisher、run_drafts 等模块分工处理读图、成文、发布与归档。各模块职责单一，故障亦易于定位。</p></div>
+      </div>
+      <div class="layer">
+        <div class="badge b3">产</div>
+        <div><h4>产出层 · Output</h4><p>WordPress REST API 发布文章；python-docx 生成 Word 包；Facebook / LinkedIn / YouTube API 分发内容。所有"对外出口"均在此层收口。</p></div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Python</span>
+      <span class="chip">WordPress REST API</span>
+      <span class="chip">Facebook Graph API</span>
+      <span class="chip">YouTube Data API</span>
+      <span class="chip">python-docx</span>
+      <span class="chip">多模态视觉理解</span>
+      <span class="chip">定时任务</span>
+      <span class="chip">幂等日志</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="wrap">
+    <div class="sec-tag">关于我</div>
+    <h2>搭建者</h2>
+    <div class="about">
+      我是 <b>StephenFang</b>，专注把业务需求转化为可落地的 AI 工作流。从需求拆解、提示词与知识库设计，到脚本编排、平台 API 接入、异常处理和交付复用，我独立完成了这套内容自动化闭环。它累计支撑约 100 条内容发布，并将原本分散在每个社媒平台的文案编撰与发布步骤，压缩为可定时运行的统一流程。
+    </div>
+  </div>
+</section>
+
+<footer>
+  StephenFang ｜ AI 效能部署与工作流作品集 ｜ 2026
+</footer>
+
+<script>
+  // ---- tabs ----
+  document.querySelectorAll('.demo .tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.demo .tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.demo .op').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('op-'+t.dataset.tab).classList.add('active');
+    });
+  });
+
+  const stepsA = [
+    {t:'读取 config.json', d:'校验站点/账号/密码已填；default_status = publish（直接发布）'},
+    {t:'加载公司知识库', d:'company-knowledge.md：英文写作补充包 / 中文口径 / 雷区'},
+    {t:'扫描 inbox，排除已处理', d:'递归遍历图片，对比三套日志，选出本篇 1 张未处理图'},
+    {t:'多模态读图 + 三版成文', d:'英文完整版（发站）/ 中文≤400字（Word包）/ 英文≤400词（存档）'},
+    {t:'写出 3 个 JSON', d:'draft_articles.json / draft_articles_zh.json / draft_articles_en_word.json'},
+    {t:'运行 3 个脚本', d:'发WP(设特色图) → 生成中企动力Word包 → 生成英文存档Word（幂等日志护航）'},
+    {t:'图片归档 + 运行报告', d:'图移入 processed/；输出标题、路径、剩余未处理数'}
+  ];
+  const stepsB = [
+    {t:'切换到 social_auto 目录', d:'…\\TK\\social_auto'},
+    {t:'运行 run_once.py（隔离 venv）', d:'读取队列里待发的 Word 文档'},
+    {t:'判断类型并按星期分流', d:'图文 / 视频；周一三五 17:00 触发'},
+    {t:'发布到 Facebook / LinkedIn', d:'图文走 FB；视频抽帧写英文文案后发 FB + YouTube'},
+    {t:'失败归档并汇报', d:'异常文档进 failed/，运行结果回传用户'}
+  ];
+
+  function runDemo(which){
+    const steps = which==='a'?stepsA:stepsB;
+    const btn = document.getElementById('run-'+which);
+    const con = document.getElementById('con-'+which);
+    const prog = document.getElementById('prog-'+which);
+    btn.disabled = true;
+    con.innerHTML=''; con.classList.add('show');
+    prog.classList.add('show'); prog.firstElementChild.style.width='0%';
+    const total = steps.length;
+    steps.forEach((s,i)=>{
+      setTimeout(()=>{
+        const line=document.createElement('div');
+        line.className='logline';
+        line.innerHTML='<span class="dot">●</span><span class="lt">'+String(i+1).padStart(2,'0')+'</span><span class="ld"><b>'+s.t+'</b> — '+s.d+'</span>';
+        con.appendChild(line);
+        prog.firstElementChild.style.width=Math.round((i+1)/total*100)+'%';
+        if(i===total-1){
+          setTimeout(()=>{
+            btn.disabled=false;
+            highlightCards(which);
+            document.getElementById('cards-'+which).scrollIntoView({behavior:'smooth',block:'center'});
+          },500);
+        }
+      }, i*780);
+    });
+  }
+
+  function highlightCards(which){
+    document.querySelectorAll('#cards-'+which+' .card').forEach((c,idx)=>{
+      setTimeout(()=>{ c.classList.add('hl'); }, idx*120);
+    });
+  }
+
+  document.getElementById('run-a').addEventListener('click',()=>runDemo('a'));
+  document.getElementById('run-b').addEventListener('click',()=>runDemo('b'));
+</script>
+
+</body>
+</html>
+
