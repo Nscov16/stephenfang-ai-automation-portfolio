@@ -103,6 +103,20 @@
   .impact-item span{font-size:14.5px;color:#e2e8f0}
   .case-result{margin-top:18px;border-left:4px solid var(--teal);background:var(--teal-soft);border-radius:0 10px 10px 0;padding:13px 16px;color:#164e63;font-size:14.5px}
   .case-result b{color:#0f766e}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  .compare-col{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff}
+  .compare-col.after{border-color:#99d5ce;background:var(--teal-soft)}
+  .compare-col h3{font-size:18px;margin-bottom:12px}
+  .compare-col ul{margin:0;padding-left:20px;color:#33405a;font-size:14.5px}
+  .compare-col li{margin:8px 0}
+  .evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .evidence-card{margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .evidence-card img{width:100%;height:190px;object-fit:cover;object-position:top;display:block;background:#edf1f6}
+  .evidence-card figcaption{padding:14px;font-size:13.5px;color:var(--muted)}
+  .evidence-card b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+  .contrib{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  .contrib-item{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}
+  .contrib-item b{display:block;color:var(--brand);margin-bottom:5px}
 
   /* ARCHITECTURE */
   .layers{margin-top:22px;display:flex;flex-direction:column;gap:14px}
@@ -204,6 +218,7 @@
     .hl,.stats{grid-template-columns:1fr}
     .stats{grid-template-columns:1fr 1fr}
     .impact-grid{grid-template-columns:1fr}
+    .compare,.evidence-grid,.contrib{grid-template-columns:1fr}
     .downloads{grid-template-columns:1fr}
   }
   @media (max-width:760px){
@@ -262,75 +277,44 @@
   </div>
 </section>
 
+<!-- BEFORE / AFTER -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-tag blue">效率改造</div>
+    <h2>自动化前后对比</h2>
+    <div class="lead">“每周节省约 3 个工作日”基于每周一、三、五的实际运营节奏估算，节省主要来自文案生产、排版上传和跨平台重复发布。</div>
+    <div class="compare">
+      <div class="compare-col">
+        <h3>自动化前 · 多平台手工作业</h3>
+        <ul>
+          <li>逐张识别产品图并整理卖点</li>
+          <li>分别编写中英文内容与视频介绍</li>
+          <li>手动制作 Word、排版并上传独立站</li>
+          <li>逐一登录社媒后台、重复上传与发布</li>
+          <li>依靠人工记录完成状态追踪</li>
+        </ul>
+      </div>
+      <div class="compare-col after">
+        <h3>自动化后 · 素材入队 + 人工审核</h3>
+        <ul>
+          <li>AI 读图并结合企业知识库生成内容</li>
+          <li>一次产生中英文多版本成品</li>
+          <li>自动创建 WordPress 文章与特色图</li>
+          <li>统一队列按排期分发至多个海外渠道</li>
+          <li>日志、归档、重试与防重复自动执行</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WORK 1 -->
 <section class="alt">
   <div class="wrap">
     <div class="sec-tag blue">作品一 · 内容生产</div>
     <h2>WordPress 多语言自动成文</h2>
     <div class="lead">每周一三五 09:00，自动将一张产品图写成英文长文（发官网）、中文短文（供国内平台）与英文精简存档，三端同步产出。</div>
-    <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案编撰、Word 排版、独立站上传和内容归档整合为一次自动运行，日常操作缩减为放入产品图与审核成品。</div>
-
-    <div class="card">
-      <h3>从 0 到 1 的搭建过程</h3>
-      <div class="story">
-        <div class="blk">
-          <h4><span class="dot">1</span>起点：一批产品图，缺乏配套文案</h4>
-          <p>手头数十张制造业产品图，需发布至英文独立站及国内平台。逐张写中英文、排版上传，单张耗时大半天。为此我把流程重构为「投入一张图，自动产出三份成品」。</p>
-        </div>
-        <div class="blk">
-          <h4><span class="dot">2</span>让计算机"理解"图像内容</h4>
-          <p>首要环节是读图：自动化借助多模态能力识别产品图（三瓣旋盖、医疗吸液头或新能源车压铸型芯），并提炼结构亮点、加工难点、适用场景等成文素材，免去逐张人工描述。</p>
-        </div>
-        <div class="blk">
-          <h4><span class="dot">3</span>建立"公司知识库"统一表述口径</h4>
-          <p>仅读图不够，还需"企业视角"。我整理了一份知识库（company-knowledge.md），涵盖公司简介、英文术语、SEO 关键词与合规边界；每次成文前先检索该库，确保三版口径一致、术语统一。</p>
-        </div>
-        <div class="blk">
-          <h4><span class="dot">4</span>一次生成三版，各自分发</h4>
-          <ul>
-            <li><b>英文完整版</b>：专业长文，含小标题与要点，经 WordPress REST API 发布至企业独立站，并自动设为特色图片。</li>
-            <li><b>中文精简版</b>（≤400 字）：地道非机翻的中文内容，生成 Word 包（文字 + 独立图），供发布至国内「中企动力」后台。</li>
-            <li><b>英文精简版</b>（≤400 词）：英文存档 Word，按日期归类，留底备查。</li>
-          </ul>
-        </div>
-        <div class="blk">
-          <h4><span class="dot">5</span>关键工程细节：幂等，绝不重复处理</h4>
-          <p>定时任务每次仅处理"尚未处理"的那张图。三套日志相互印证，重复运行也不会二次发布或生成；处理完毕的图片自动由 inbox 移至 processed/。</p>
-        </div>
-        <div class="blk">
-          <h4><span class="dot">6</span>最终形态</h4>
-          <p>如今每周一三五无需人工干预：官网自动新增英文文章、国内平台获中文稿、存档…1833 tokens truncated…  <text class="node-sub" x="225" y="190">周一三五 17:00</text>
-
-          <rect class="node" x="320" y="150" width="140" height="62" rx="10"></rect>
-          <text class="node-text" x="390" y="170">按星期分流</text>
-          <text class="node-sub" x="390" y="190">一文档+视频/三视频/五文档</text>
-
-          <rect class="node brand" x="480" y="150" width="120" height="62" rx="10"></rect>
-          <text class="node-text" x="540" y="170">解析</text>
-          <text class="node-sub" x="540" y="190">正文 / 抽帧写文案</text>
-
-          <rect class="node teal" x="630" y="30" width="130" height="58" rx="10"></rect>
-          <text class="node-text" x="695" y="50">Facebook 图文</text>
-          <text class="node-sub" x="695" y="68">已跑通</text>
-
-          <rect class="node teal" x="630" y="110" width="130" height="58" rx="10"></rect>
-          <text class="node-text" x="695" y="130">Facebook 视频</text>
-          <text class="node-sub" x="695" y="148">已跑通</text>
-
-          <rect class="node teal" x="630" y="190" width="130" height="58" rx="10"></rect>
-          <text class="node-text" x="695" y="210">YouTube 视频</text>
-          <text class="node-sub" x="695" y="228">已跑通</text>
-
-          <rect class="node teal" x="630" y="270" width="130" height="58" rx="10"></rect>
-          <text class="node-text" x="695" y="290">LinkedIn</text>
-          <text class="node-sub" x="695" y="308">已跑通</text>
-
-          <line x1="130" y1="181" x2="155" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
-          <line x1="290" y1="181" x2="315" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
-          <line x1="460" y1="181" x2="475" y2="181" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
-          <line x1="600" y1="172" x2="625" y2="58" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
-          <line x1="600" y1="181" x2="625" y2="138" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
-          <line x1="600" y1="190" x2="625" y2="218" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
+    <div class="case-result"><b>效率变化：</b>把产品识别、中英文文案…2975 tokens truncated…        <line x1="600" y1="190" x2="625" y2="218" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
           <line x1="600" y1="200" x2="625" y2="298" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar2)"></line>
 
           <text x="380" y="340" class="node-sub" text-anchor="middle">成功 → posted/，失败 → failed/，运行全程有日志可查</text>
@@ -501,6 +485,29 @@
   </div>
 </section>
 
+<!-- REAL EVIDENCE -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-tag blue">真实运行证据</div>
+    <h2>不是流程概念，而是已运行的交付</h2>
+    <div class="lead">以下截图来自真实后台，已遮盖公司名称、账号、域名与本机路径，保留发布状态、内容标题、日期与运营数据。</div>
+    <div class="evidence-grid">
+      <figure class="evidence-card">
+        <img src="assets/evidence/workbuddy-social-task-redacted.png" alt="脱敏后的 WorkBuddy 社媒自动发布任务配置" loading="lazy" />
+        <figcaption><b>WorkBuddy 任务配置</b>工作空间、运行脚本与结果汇报规则均已配置为可重复执行。</figcaption>
+      </figure>
+      <figure class="evidence-card">
+        <img src="assets/evidence/wordpress-published-redacted.png" alt="脱敏后的 WordPress 已发布文章列表" loading="lazy" />
+        <figcaption><b>WordPress 实际产出</b>多篇英文技术内容按日期持续发布，并保留草稿与状态管理。</figcaption>
+      </figure>
+      <figure class="evidence-card">
+        <img src="assets/evidence/facebook-content-library-redacted.png" alt="脱敏后的 Facebook 内容库发布记录" loading="lazy" />
+        <figcaption><b>Facebook 持续分发</b>内容库保留发布时间、浏览、互动与观看时长等真实数据。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- REUSABLE TEMPLATES -->
 <section class="alt" id="templates">
   <div class="wrap">
@@ -579,6 +586,11 @@
     <h2>搭建者</h2>
     <div class="about">
       我是 <b>StephenFang</b>，专注把业务需求转化为可落地的 AI 工作流。从需求拆解、提示词与知识库设计，到脚本编排、平台 API 接入、异常处理和交付复用，我独立完成了这套内容自动化闭环。它累计支撑约 100 条内容发布，并将原本分散在每个社媒平台的文案编撰与发布步骤，压缩为可定时运行的统一流程。
+    </div>
+    <div class="contrib" aria-label="我的职责与贡献">
+      <div class="contrib-item"><b>业务与流程设计</b>识别重复运营环节，定义素材入口、内容产出、渠道分流、人工审核与异常处理边界。</div>
+      <div class="contrib-item"><b>AI 内容系统</b>设计提示词、企业知识库、中英文内容规范，以及图像和视频的多模态理解流程。</div>
+      <div class="contrib-item"><b>平台接入与交付</b>完成 WordPress、Facebook、YouTube、LinkedIn 接入，并加入幂等、重试、日志、安全脱敏和模板化交付。</div>
     </div>
   </div>
 </section>
